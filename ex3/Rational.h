@@ -4,12 +4,11 @@
 #include <iosfwd>
 #include <iostream>
 
+
 class Rational
 {
-
-
 public:
-	Rational::Rational(int = 0, int = 1);
+	Rational(int = 0, int = 1);
 	int getNumerator() const;
 	int getDenominator() const;
 	Rational getInverseFragment() const;
