@@ -1,15 +1,7 @@
 #pragma once
+
 #include "Rational.h"
-
-
-
-//====STRUCT====//
-struct polyElement {
-	polyElement(unsigned int = 0);
-	Rational _value;
-	unsigned int _deg;
-	polyElement *_next;
-};
+#include "PolyElement.h"
 
 struct polyHead {
 	polyElement *_headOfPoly;
@@ -24,6 +16,8 @@ public:
 	~DataBase();
 	void requestPrintInstance(const unsigned int);
 	polyElement getNextPrintInstance(bool &);
+	void cloneListFromIndexToIndex(const int, const int);
+	polyElement getElementByIndexes(const int, const int) const;
 	
 private:
 	polyElement *_currentForPrint;

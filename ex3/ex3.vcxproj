@@ -67,11 +67,13 @@
     <ClCompile Include="DataBase.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Poly.cpp" />
+    <ClCompile Include="PolyElement.cpp" />
     <ClCompile Include="Rational.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataBase.h" />
     <ClInclude Include="Poly.h" />
+    <ClInclude Include="PolyElement.h" />
     <ClInclude Include="Rational.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
