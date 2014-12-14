@@ -2,6 +2,19 @@
 
 #include <ostream>
 
+//================Constructor=============//
+Rational::Rational(int numerator, int denominator){
+    
+    int gcd = findGCD(numerator, denominator);
+    
+    _numerator = gcd > 1 ? numerator / gcd : numerator;
+    _denominator = gcd > 1 ? denominator / gcd : denominator;
+    
+    fixSigned();
+}
+
+
+//=============Getters===========//
 int Rational::getNumerator() const{
 	return _numerator;
 }
@@ -10,27 +23,24 @@ int Rational::getDenominator() const{
 	return _denominator;
 }
 
-int Rational::findGCD(const int a, const int b) const{
-
-	if (a == 0) return b;
-	return abs (findGCD(b%a, a));
-}
-
+//==============Other Methods============//
+//gets the inverse fragment of a rational number
+//only if numerator != 0 so we wont have x/0
 Rational Rational::getInverseFragment() const{
 
 	return _numerator ?  Rational(_denominator, _numerator) : (*this);
 }
 
-Rational::Rational(int numerator, int denominator){
-
-	int gcd = findGCD(numerator, denominator);
-
-	_numerator = gcd > 1 ? numerator / gcd : numerator;
-	_denominator = gcd > 1 ? denominator / gcd : denominator;
-
-	fixSigned();
+//gets GCD of two variables
+int Rational::findGCD(const int a, const int b) const{
+    
+    if (a == 0) return b;
+    return abs (findGCD(b%a, a));
 }
 
+
+//fixed signed, only numerator holds as positive / negative
+//denomerator always positive
 void Rational::fixSigned(){
 	double div = (double)_numerator / _denominator;
 
@@ -42,6 +52,8 @@ void Rational::fixSigned(){
 	_denominator = _numerator ?  abs(_denominator) : 1;
 }
 
+//===============Operators==============//
+//Arithemetic
 Rational operator+(const Rational& a, const Rational& b){
 
 	return Rational((a.getNumerator() * b.getDenominator()) + (a.getDenominator() * b.getNumerator()),
@@ -128,6 +140,7 @@ Rational& Rational::operator--(){
 	return *this;
 }
 
+//logical
 bool operator==(const Rational& a, const Rational& b){
 
 	return a.getNumerator() == b.getNumerator() && a.getDenominator() == b.getDenominator();
@@ -158,11 +171,17 @@ bool operator>=(const Rational& a, const Rational& b){
 	return (a - b).getNumerator() >= 0;
 }
 
+
+//print operators
 std::ostream& operator << (std::ostream& os, Rational& a){
-	os << a.getNumerator() << '/' << a.getDenominator();
+    if(a.getDenominator() == 1)
+        os << a.getNumerator();
+    else
+        os << a.getNumerator() << '/' << a.getDenominator();
 	return os;
 }
 
+//default Destructor
 Rational::~Rational()
 {
 }

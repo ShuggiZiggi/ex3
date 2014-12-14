@@ -2,10 +2,15 @@
 
 #include "Rational.h"
 
+//Poly Element class
+//holds each poly element's inside
+//linked list
 class polyElement {
 public:
+    //constructor
 	polyElement(unsigned int = 0);
-
+    
+    //setters
 	void setRational(const Rational&);
 	void setDegree(const int);
 	void setNext(polyElement*);

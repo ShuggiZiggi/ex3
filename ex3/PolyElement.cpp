@@ -1,14 +1,14 @@
 #include "PolyElement.h"
 
-
+//==============Constructors=============//
 polyElement::polyElement(unsigned int deg)
 {
 	setDegree(deg);
-	std::cout << "========\n";
 	setNext(nullptr);
-	std::cout << "========\n";
 }
 
+
+//===================Setters==============//
 void polyElement::setRational(const Rational& rational){
 	_value = rational;
 
@@ -18,9 +18,9 @@ void polyElement::setDegree(const int deg){
 }
 void polyElement::setNext(polyElement* next){
 	this->_next = next;
-	std::cout << "IM INSIDE THE  FUCkTION\n" << next << "\n";
 }
 
+//===============Getters==================//
 Rational polyElement::getRational() const
 {
 	return _value;
@@ -30,7 +30,6 @@ int polyElement::getDegree() const
 {
 	return _deg;
 }
-
 
 polyElement *polyElement::getNext() const{
 	return _next;

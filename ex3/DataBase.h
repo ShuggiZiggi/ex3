@@ -10,21 +10,27 @@ struct polyHead {
 class DataBase
 {
 public:
-	unsigned int getNewIndex();
+    //Constructors || destructor
+    DataBase();
+    ~DataBase();
+    
+    //getters
+    polyElement getNextPrintInstance(bool &); //non const, sets the _currentForPrint
+    unsigned int getNewIndex(); //non const, generates new id
+    polyElement getElementByIndexes(const int, const int) const;
+    
+	//other Methods
+    void requestPrintInstance(const unsigned int);
 	void inputNewNode(const unsigned int, const Rational&, const unsigned int);
-	DataBase();
-	~DataBase();
-	void requestPrintInstance(const unsigned int);
-	polyElement getNextPrintInstance(bool &);
 	void cloneListFromIndexToIndex(const int, const int);
-	polyElement getElementByIndexes(const int, const int) const;
+    void replaceRationalValue_findBySubIndex(const int,const int,const Rational &);
 	
 private:
 	polyElement *_currentForPrint;
-	void _clearList(polyElement*);
 	polyHead *_DBList;
 	unsigned int _sizeOfList;
-	
+    
+	void _clearList(polyElement*);
 	void _increaseList();
 };
 
